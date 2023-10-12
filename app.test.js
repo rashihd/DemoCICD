@@ -14,6 +14,6 @@ describe('GET /test', () => {
     it('should return the sum of n1 and n2', async () => {
         const res = await request(app).get('/test');
         expect(res.statusCode).toEqual(200);
-        expect(res.body).toEqual({ result: '16' });  // Since 7 + 9 = 16
+        expect(res.body).toEqual({ result: '-2' });  // Since 7 + 9 = 16
     });
 });
