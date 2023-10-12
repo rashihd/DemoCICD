@@ -2,13 +2,27 @@ name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
-      - DEV-001
 
 jobs:
-  build:
+  run-unit-tests:
+    runs-on: ubuntu-latest
 
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+  build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +38,3 @@ jobs:
 
     - name: Build 
       run: npm run build
-
-    - name: Run tests
-      run: npm test
